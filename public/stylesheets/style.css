@@ -25,11 +25,11 @@ h1{
 }
 
 button{
-  width: 80px;
   text-decoration: none;
   border-radius: 5px;
   border: none;
   padding: 10px;
+  
 }
 
 div.head{
@@ -67,4 +67,29 @@ footer a.nav-link{
 
 .text-center{
   text-align: center;
+}
+
+.grind-snip{
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 7px;
+}
+
+.grind-snip h2{
+  font-size: 1.5rem;
+}
+
+.row{
+  margin: 0;
+}
+
+.grind-desc{
+  margin-top: 10px;
+  padding-left: 0;
+}
+
+.row.desc{
+  margin-top: 15px;
+  padding-left: 0;
+  margin-left: 0;
 }
