@@ -6,10 +6,26 @@ html
     link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/font-awesome.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+
   body
-    img(src="/images/logo.png", alt="logo")
+    nav.navbar.navbar-expand-md.navbar-dark.bg-dark
+      a.navbar-brand.mr-0(href='/') Tralee Tutors
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarsExample03', aria-controls='navbarsExample03', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarsExample03.collapse.navbar-collapse
+        .mr-auto
+        ul.navbar-nav.mr-0
+          li.nav-item.active
+            a.nav-link(href='/discoverGrinds') Grinds
+          li.nav-item.active
+            a.nav-link(href='/login')
+              | Login 
+              span.sr-only (current)
+          li.nav-item.active
+            a.nav-link(href='/') Register          
+          
     block content
-    script(src='https://code.jquery.com/jquery.slim.min.js')
-script(src='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js')
+    script(src='/javascripts/jquery.slim.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js')
     script(src='/javascripts/bootstrap.min.js')
     

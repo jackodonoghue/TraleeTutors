@@ -4,15 +4,67 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+a.nav-link {
+  color: rgb(0, 0, 0);
+  float: right;
+
 }
 
 h1{
   color: #00B7FF;
 }
 
-img{
-  width: 10%;
-  margin: 0% auto;
+.logo{
+  width: 50%;
+  float: left;
+}
+
+.dark{
+  background-color: black;
+  color: #fff;
+}
+
+button{
+  width: 80px;
+  text-decoration: none;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+}
+
+div.head{
+  clear: both;
+  overflow: auto;
+}
+
+div.butts{
+  width: 49%; 
+  float: right;
+}
+
+img.mr-auto{
+  width: auto;
+}
+
+.foot-title{
+  float: left;
+  font-size: 1.2rem;
+  padding: .5rem 0;
+}
+
+footer{
+  padding: .5rem;
+  color: #fff;
+  background-color: #343a40!important;
+  clear: both;
+  overflow: auto;
+}
+
+footer a.nav-link{
+  color: #fff;
+  padding: .7rem 1rem;
+}
+
+.text-center{
+  text-align: center;
 }

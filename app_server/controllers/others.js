@@ -1,8 +1,7 @@
 /* GET home page */
 const about = function(req, res){ 
-    res.render('index', { title: 'Express' }); 
+    res.render('about', { title: 'Express' }); 
     };
-    module.exports = { 
-    index 
-    };
-    
+module.exports = { 
+about 
+};

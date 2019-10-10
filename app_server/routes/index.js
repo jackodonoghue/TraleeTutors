@@ -4,14 +4,11 @@ const router = express.Router();
 const ctrlLocations = require('../controllers/locations'); 
 const ctrlOthers = require('../controllers/others');
 
-/* GET home page. */
-router.get('/', ctrlMain.index); 
-module.exports = router;
-
 /* Locations pages */
-router.get('/', ctrlLocations.homelist);
-router.get('/location', ctrlLocations.locationInfo);
-router.get('/location/review/new', ctrlLocations.addReview);
+router.get('/', ctrlLocations.register);
+router.get('/login', ctrlLocations.login);
+router.get('/discoverGrinds', ctrlLocations.discoverGrinds);
+router.get('/bookGrinds', ctrlLocations.bookGrinds);
 /* Other pages */
 router.get('/about', ctrlOthers.about);
 module.exports = router;

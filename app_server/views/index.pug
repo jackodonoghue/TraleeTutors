@@ -1,6 +1,25 @@
 extends layout
 
 block content
- 
-  h1= title
-  p Welcome to #{title}
+
+  .text-center.mt-5
+    form.col-md-6.col-sm-8.col-lg-4.col-xl-3.ml-auto.mr-auto
+      img.mb-4.mr-auto(src='/images/logo.png', alt='',  width='100px')
+      h1.h3.mb-3.font-weight-normal Please #{title}
+      label.sr-only(for='inputEmail') Name
+      input.mb-3#inputEmail.form-control(type='text', placeholder='Full name', required='', autofocus='')
+      label.sr-only(for='inputEmail') Course
+      input.mb-3#inputEmail.form-control(type='text', placeholder='Course title', required='')
+      label.sr-only(for='inputEmail') Email address
+      input.mb-3#inputEmail.form-control(type='email', placeholder='Email address', required='')
+      label.sr-only(for='inputPassword') Password
+      input.mb-3#inputPassword.form-control(type='password', placeholder='Password', required='')
+      label.sr-only(for='inputPassword') Confirm password
+      input.mb-3#inputPassword.form-control(type='password', placeholder='Confirm password', required='')
+      .checkbox.mb-3
+        label
+          input(type='checkbox', value='remember-me')
+          |  Remember me
+      button.btn.btn-lg.btn-primary.btn-block(type='submit') #{title}
+      p.mt-5.mb-3.text-muted &copy; 2019
+
