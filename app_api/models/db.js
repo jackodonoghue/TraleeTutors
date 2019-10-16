@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const dbURI = 'mongodb://localhost/';
+const dbURI = 'mongodb+srv://jackodonoghue:<password>@traleetutors-852mk.azure.mongodb.net/test?retryWrites=true&w=majority'
 mongoose.connect(dbURI);
 
 mongoose.connection.on('connected', () => { 
@@ -47,5 +47,4 @@ process.exit(0);
 });
 });
 
-
-    
+require('./grinds');

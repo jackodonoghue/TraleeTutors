@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-const ctrlLocations = require('../controllers/locations'); 
+const ctrlGrinds = require('../controllers/grinds'); 
 const ctrlOthers = require('../controllers/others');
 
-/* Locations pages */
-router.get('/', ctrlLocations.register);
-router.get('/login', ctrlLocations.login);
-router.get('/grinds', ctrlLocations.grinds);
-router.get('/grinds/grind', ctrlLocations.bookGrinds);
+/* Grinds pages */
+router.get('/', ctrlGrinds.register);
+router.get('/login', ctrlGrinds.login);
+router.get('/grinds', ctrlGrinds.grinds);
+router.get('/grinds/grind', ctrlGrinds.bookGrinds);
 /* Other pages */
 router.get('/about', ctrlOthers.about);
 module.exports = router;
