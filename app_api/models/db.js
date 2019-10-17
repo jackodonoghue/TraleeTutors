@@ -1,7 +1,15 @@
 const mongoose = require('mongoose');
 
-const dbURI = 'mongodb+srv://jackodonoghue:<password>@traleetutors-852mk.azure.mongodb.net/test?retryWrites=true&w=majority'
-mongoose.connect(dbURI);
+const dbURI = 'mongodb+srv://jackodonoghue:Brqey3s5!@traleetutors-852mk.azure.mongodb.net/TraleeTutors?retryWrites=true&w=majority'
+mongoose.connect(String(dbURI),{
+useNewUrlParser: true,
+useUnifiedTopology: true,
+socketTimeoutMS: 0,
+keepAlive: true,
+}
+)
+.then(() => console.log('Connected To Mongo!!'))
+.catch(err => console.log(err));
 
 mongoose.connection.on('connected', () => { 
 console.log(`Mongoose connected to ${dbURI}`); 
@@ -48,3 +56,4 @@ process.exit(0);
 });
 
 require('./grinds');
+require('./users'); 

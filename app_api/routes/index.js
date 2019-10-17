@@ -1,29 +1,41 @@
 const express = require('express');
 const router = express.Router();
 const ctrlGrinds = require('../controllers/grinds');
-const ctrlReviews = require('../controllers/reviews');
+// const ctrlReviews = require('../controllers/reviews');
+const ctrlUsers = require('../controllers/users');
 
-// Grinds
-router
-  .route('/grinds')
-  .get(ctrlGrinds.grindsListByCourse)
-  .post(ctrlGrinds.grindsCreate);
+// // Grinds
+// router
+//   .route('/grinds')
+//   .get(ctrlGrinds.grindsListByCourse)
+//   .post(ctrlGrinds.grindsCreate);
 
 router
-  .route('/grinds/:grindid')
-  .get(ctrlGrinds.grindsReadOne)
-  .put(ctrlGrinds.grindsUpdateOne)
-  .delete(ctrlGrinds.grindsDeleteOne);
+  .route('/grinds/:title')
+  .get(ctrlGrinds.grindsReadOne);
+  // .put(ctrlGrinds.grindsUpdateOne)
+  // .delete(ctrlGrinds.grindsDeleteOne);
   
-// reviews
+// // reviews
+// router
+//   .route('/grinds/:grindid/reviews')
+//   .post(ctrlReviews.reviewsCreate);
+
+// router
+//   .route('/grinds/:grindid/reviews/:reviewid')
+//   .get(ctrlReviews.reviewsReadOne)
+//   .put(ctrlReviews.reviewsUpdateOne)
+//   .delete(ctrlReviews.reviewsDeleteOne);
+
+
+//Users
 router
-  .route('/grinds/:grindid/reviews')
-  .post(ctrlReviews.reviewsCreate);
+  .route('/register')
+  .post(ctrlUsers.saveMe);
+
 
 router
-  .route('/grinds/:grindid/reviews/:reviewid')
-  .get(ctrlReviews.reviewsReadOne)
-  .put(ctrlReviews.reviewsUpdateOne)
-  .delete(ctrlReviews.reviewsDeleteOne);
+  .route('/login')
+  .post(ctrlUsers.usersReadOne);
 
 module.exports = router;
