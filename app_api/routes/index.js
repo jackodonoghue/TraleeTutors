@@ -30,7 +30,7 @@ router
 
 //Users
 router
-  .route('/register')
+  .route('/')
   .post(ctrlUsers.saveMe);
 
 

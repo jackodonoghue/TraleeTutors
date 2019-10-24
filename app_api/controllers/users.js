@@ -32,8 +32,6 @@ const usersReadOne = function (req, res) {
             .status(404) 
             .json(err); 
             
-
-         console.log('jack');
           return; 	
         }
 
