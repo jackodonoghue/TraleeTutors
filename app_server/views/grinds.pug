@@ -2,10 +2,9 @@ extends layout
 
 block content
   .col-lg-7.col-md-8.col-sm-10.col-11.ml-auto.mr-auto.mt-5.mb-5
-    each grindInfos in grindInfo
-      .row.grind-snip.mb-3
-        h2=grindInfos.title
-        p #{grindInfos.description}
+    .row.grind-snip.mb-3
+        h2=grindInfo.grindTitle
+        p #{grindInfo.description}
         button.ml-auto.mr-2 
-          a(href="grinds/grind") View Grind
+          a(href="grinds/" + grindInfo.id ) View Grind
     

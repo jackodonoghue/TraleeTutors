@@ -1,26 +1,26 @@
 const mongoose = require('mongoose');
 
 const grindsSchema = new mongoose.Schema({
-grindName: {
+id: String,
+grindTitle: {
     type: String,
     required: true
     },        
-tutor: {
+author: {
     type: String,
     required: true
     },  
 description: {
     type: String,
     required: true
-}, 
+},        
+times: [Number], 
 rating: {
     type: Number,
     'default': 0,
     min: 0,
     max: 5
-    },        
-price: Number,
-times: [Number]
+    }
 });
     
 mongoose.model('Grind', grindsSchema);

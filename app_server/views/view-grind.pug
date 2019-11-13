@@ -4,16 +4,18 @@ block content
   .col-lg-7.col-md-8.col-sm-10.col-11.ml-auto.mr-auto.mt-5.mb-5
     .grind-snip.mb-3
       .row
-        h2= grindHeader.title
-        .ml-auto.mr-2 
-          i.fa.fa-star 
-          i.fa.fa-star 
-          i.fa.fa-star 
-          i.fa.fa-star-o 
-          i.fa.fa-star-o 
+        h2= grindInfo.grindTitle
+        .ml-auto.mr-5 
+          if grindInfo.rating == 3 
+            i.fa.fa-star
+            i.fa.fa-star
+            i.fa.fa-star
+            i.fa.fa-star-o 
+            i.fa.fa-star-o 
+            
  
       .row
-        |By: #{grindHeader.tutor}
+        |By: #{grindInfo.author}
 
       .row.desc
         .col-xl-6.ml-0.ml-0.pl-0
@@ -21,14 +23,14 @@ block content
             |Description:
           .row 
             .grind-desc
-              p #{description}
+              p #{grindInfo.description}
         .col-xl-3.mx-auto
           label.sr-only(for='inputEmail') Select date
           input.mb-3#inputEmail.form-control(type='date', placeholder='', required='', autofocus='')
           label.sr-only(for='inputEmail') Select time
           label.sr-only(for='inputEmail') Select date
           select.mb-3#inputEmail.form-control( name='time')
-            each time in times
+            each time in grindInfo.times
               option #{time}
           button.btn.btn-primary.btn-block(type='submit') Book Grind 
 
