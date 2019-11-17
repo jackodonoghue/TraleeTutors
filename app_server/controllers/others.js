@@ -1,7 +1,7 @@
 /* GET home page */
-const about = function (req, res) {
-    res.render('about', { title: 'Express' });
+const loadIndex = function (req, res) {
+    res.render('index', { title: 'Tralee Tutors' });
 };
 module.exports = {
-    about
+    loadIndex
 };

@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require('path');
-//const favicon = require('serve-favicon');
+//const favicon = requ*ire('serve-favicon');
+const { check, validationResult } = require('express-validator');
+const expressSession = require('express-session');
+
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -22,6 +25,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(expressSession({secret: 'user', saveUninitialized: false, resave: false}));
 
 
 app.use('/api', function(req, res, next) {

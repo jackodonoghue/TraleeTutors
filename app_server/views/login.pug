@@ -3,7 +3,7 @@ extends layout
 block content
 
   .text-center.mt-5
-    form.col-md-6.col-sm-8.col-lg-4.col-xl-3.ml-auto.mr-auto(method='post', role='form')
+    form.col-md-6.col-sm-8.col-lg-4.col-xl-3.ml-auto.mr-auto(action = '/login', method='post', role='form')
       img.mb-4.mr-auto(src='/images/logo.png', alt='',  width='100px')
       h1.h3.mb-3.font-weight-normal Please #{title}
       label.sr-only(for='email') Email address

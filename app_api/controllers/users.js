@@ -4,7 +4,7 @@ const User = mongoose.model('Users');
 const saveNewUser = function (req, res) {
   const newUser = new User(
     {
-      id: req.body._id,
+      _id: new mongoose.Types.ObjectId(),
       username: req.body.username,
       course: req.body.course,
       email: req.body.email,
@@ -24,6 +24,32 @@ const saveNewUser = function (req, res) {
   })
 }
 
-module.exports = { saveNewUser };
+const login = function(req, res) {
+      let emailEntered = req.body.email;
+      let passwordEntered = req.body.password;
+
+      User.findOne({email: emailEntered, password: passwordEntered}, function(err, user) {
+        console.log(user);
+        
+        if(err) {
+          console.log(err);
+          return res.status(500).send;
+
+        }        
+        if(!user) {
+          console.log("user: not found");
+          return res.status(404).send();
+        }
+        else{
+          console.log("user: " + user._id + " found");
+          return res.status(200).send();
+        }
+      })
+}
+
+module.exports = { 
+  saveNewUser,
+  login
+};
 
 
