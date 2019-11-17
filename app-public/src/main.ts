@@ -1,3 +1,6 @@
+
+import {APP_BASE_HREF} from '@angular/common';
+import 'zone.js';
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 

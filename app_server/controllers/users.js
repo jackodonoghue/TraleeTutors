@@ -78,10 +78,32 @@ const _renderLoginErr = function (req, res, responseBody) {
     req.session.errors = null;
 }
 
+const loadRemove = function (req, res, responseBody) {
+    res.render('remove', { title: 'Remove Account'});
+}
+
+const remove = function (req, res) {
+    const path = '/api/remove';
+    const requestOptions = {
+        url: apiOptions.server + path,
+        method: 'POST',
+        json: {
+            username: req.body.name,
+            password: req.body.password
+        }
+    };
+    request(
+        requestOptions,
+        res.redirect('/register')
+    );
+};
+
 module.exports = {
     loadRegister,
     register,
     loadLogin,
     login,
-    loadLoginErr
+    loadLoginErr,
+    loadRemove,
+    remove
 };

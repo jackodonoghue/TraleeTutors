@@ -26,4 +26,8 @@ router
   .route('/grinds/:grindid')
   .get(ctrlGrinds.getOneGrind);
 
+router
+  .route('/remove')
+  .post(ctrlUsers.removeUser);
+
 module.exports = router;

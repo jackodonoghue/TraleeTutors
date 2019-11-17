@@ -1,18 +1,50 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule }   from '@angular/router';
 
-import { HomeListComponent } from './home-list/home-list.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { GrindsComponent } from './grinds/grinds.component';
+import { GrindListComponent } from './grind-list/grind-list.component';
+import { PageHeaderComponent } from './page-header/page-header.component';
 
 @NgModule({
   declarations: [
-    HomeListComponent
+    HomePageComponent,
+    RegisterComponent,
+    LoginComponent,
+    GrindsComponent,
+    GrindListComponent,
+    PageHeaderComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
-    HttpModule    
+    FormsModule,
+    RouterModule.forRoot([
+      {
+        path: '',
+        component: HomePageComponent
+      },
+      {
+        path: 'grinds',
+        component: GrindsComponent
+      },
+      {
+        path: 'login',
+        component: LoginComponent
+      },
+      {
+        path: 'register',
+        component: RegisterComponent
+      },
+      
+    ])
   ],
   providers: [],
-  bootstrap: [HomeListComponent]
+  bootstrap: [GrindListComponent]
 })
 export class AppModule { }

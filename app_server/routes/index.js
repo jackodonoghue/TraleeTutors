@@ -29,4 +29,8 @@ router
 
 router.get('/login/invalid_details', ctrlUsers.loadLoginErr);
     
+/* Remove Account */
+router
+    .get('/remove-account', ctrlUsers.loadRemove);
+
 module.exports = router;

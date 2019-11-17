@@ -47,9 +47,43 @@ const login = function(req, res) {
       })
 }
 
+const removeUser = function(req, res) {
+  let emailEntered = req.body.email;
+  let passwordEntered = req.body.password;
+
+  User.findOne({email: emailEntered, password: passwordEntered}, function(err, user) {
+    console.log(user);
+    
+    if(err) {
+      console.log(err);
+      return res.status(500).send;
+
+    }        
+    if(!user) {
+      console.log("user: not found");
+      return res.status(404).send();
+    }
+    else{
+      Grind.remove({_id: user._id}, function(err) {
+        if(!err) {
+          console.log("User Removed");
+          return res.status(200).send();
+        }
+        else{
+          console.log(err);
+          return res.status(500).send();
+        }
+      })
+    }
+  })
+}
+
+
+
 module.exports = { 
   saveNewUser,
-  login
+  login,
+  removeUser
 };
 
 

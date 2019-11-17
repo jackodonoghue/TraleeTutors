@@ -1,6 +1,7 @@
 doctype html
 html
   head
+    base(href='/')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     title= title
     link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
@@ -22,10 +23,25 @@ html
               | Login 
               span.sr-only (current)
           li.nav-item.active
-            a.nav-link(href='/register') Register          
-          
+            a.nav-link(href='/register') Register  
+          li.nav-item.active
+            a.nav-link(href='/update-account') Update Account          
+          li.nav-item.active
+            a.nav-link(href='/remove-account') Remove Account  
+
     block content
-    script(src='/javascripts/jquery.slim.min.js')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js')
-    script(src='/javascripts/bootstrap.min.js')
+    block scripts
+      script(src='/javascripts/jquery.slim.min.js')
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js')
+      script(src='/javascripts/bootstrap.min.js')
+
+
+      script(src='/build/runtime-es5.edb2fcf2778e7bf1d426.js')
+      script(src='/build/runtime-es2015.edb2fcf2778e7bf1d426.js')
+      script(src='/build/main-es5.c292f01090f9a9e7be4a.js')
+      script(src='/build/main-es2015.c292f01090f9a9e7be4a.js')
+      script(src='/build/polyfills-es5.ef4b1e1fc703b3ff76e3.js')
+      script(src='/build/polyfills-es2015.2987770fde9daa1d8a2e.js')
+    
+    
     
