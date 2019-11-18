@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 //const favicon = requ*ire('serve-favicon');
-const { check, validationResult } = require('express-validator');
 const expressSession = require('express-session');
 
 const logger = require('morgan');
@@ -31,6 +30,7 @@ app.use(expressSession({secret: 'user', saveUninitialized: false, resave: false}
 
 app.use('/api', function(req, res, next) {
   res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.header('Access-Control-Allow-Origin', 'http://https://tralee-tutors.herokuapp.com');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
