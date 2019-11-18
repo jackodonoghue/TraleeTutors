@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const ctrlGrinds = require('../controllers/grinds');
-const ctrlOthers = require('../controllers/others');
 const ctrlUsers = require('../controllers/users');
+const ctrlOthers = require('../controllers/others');
 
 /* Home page */
 router
@@ -21,16 +21,26 @@ router
     .get(ctrlUsers.loadRegister)
     .post(ctrlUsers.register);
 
+
+/* Remove Account */
+router
+    .route('/remove-account')
+    .get(ctrlUsers.loadRemove)
+    .post(ctrlUsers.remove);
+
 /* Login Page */
 router
     .route('/login')
     .get(ctrlUsers.loadLogin)
     .post(ctrlUsers.login);
 
-router.get('/login/invalid_details', ctrlUsers.loadLoginErr);
-    
-/* Remove Account */
+/* Update Account */
 router
-    .get('/remove-account', ctrlUsers.loadRemove);
+    .route('/update-account')
+    .get(ctrlUsers.loadUpdate)
+    .post(ctrlUsers.update);
+
+router.get('/login/invalid_details', ctrlUsers.loadLoginErr);
+
 
 module.exports = router;

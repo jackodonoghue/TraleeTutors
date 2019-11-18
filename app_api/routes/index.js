@@ -16,6 +16,14 @@ router
 .route('/login')
 .post(ctrlUsers.login);
 
+router
+  .route('/remove')
+  .delete(ctrlUsers.removeUser);
+
+router
+  .route('/update')
+  .put(ctrlUsers.update);
+
 //Grinds
 
 router
@@ -26,8 +34,5 @@ router
   .route('/grinds/:grindid')
   .get(ctrlGrinds.getOneGrind);
 
-router
-  .route('/remove')
-  .post(ctrlUsers.removeUser);
 
 module.exports = router;

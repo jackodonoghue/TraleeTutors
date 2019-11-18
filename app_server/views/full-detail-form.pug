@@ -1,0 +1,15 @@
+
+mixin full-detail-form()
+  form(method='post', role='form')
+      img.mb-4.mr-auto(src='/images/logo.png', alt='',  width='100px')
+      h1.h3.mb-3.font-weight-normal Please #{title}
+      label.sr-only(for='name') Name
+      input.mb-3.form-control(type='text', placeholder='Full name',name='name', required='', autofocus='')
+      label.sr-only(for='course') Course
+      input.mb-3.form-control(type='text',name='course', placeholder='Course title', required='')
+      label.sr-only(for='email') Email address
+      input.mb-3#inputEmail.form-control(type='email',name='email', placeholder='Email address', required='')
+      input.mb-3#inputPassword.form-control(type='password',name='password', placeholder='Password', required='')
+    
+      button.btn.btn-lg.btn-primary.btn-block(type='submit') #{title}
+      p.mt-5.mb-3.text-muted &copy; 2019

@@ -103,3 +103,8 @@ footer a.nav-link{
   border-radius: 5px;
   padding: 10px;
 }
+
+.top-center{
+  margin-top: 5%;
+  text-align: center;
+}

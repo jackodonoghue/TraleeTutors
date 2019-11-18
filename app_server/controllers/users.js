@@ -30,9 +30,6 @@ const register = function (req, res) {
     );
 };
 
-const _renderRegisterPage = function (req, res, responseBody) {
-    res.render('register', { title: 'Register' });
-}
 
 
 /* GET 'Login' page */
@@ -44,7 +41,7 @@ const loadLoginErr = function (req, res, next) {
     _renderLoginErr(req, res, next);
 };
 
-const login = function(req, res) {
+const login = function (req, res) {
     const path = '/api/login';
     const requestOptions = {
         url: apiOptions.server + path,
@@ -57,38 +54,56 @@ const login = function(req, res) {
     request(
         requestOptions,
         (err, response, body) => {
-            if(response.statusCode === 200) {   
+            if (response.statusCode === 200) {
                 res.redirect('/grinds');
             }
-            else{
+            else {
                 res.redirect('/login/invalid_details');
             }
         }
-        
+
     );
 }
 
-const _renderLoginPage = function (req, res, responseBody) {
-    res.render('login', { title: 'Login', success: false, errors: req.session.errors });
-    req.session.errors = null;
-}
-
-const _renderLoginErr = function (req, res, responseBody) {
-    res.render('login-err', { title: 'Login', success: false, errors: req.session.errors });
-    req.session.errors = null;
-}
+/* Remove Account */
 
 const loadRemove = function (req, res, responseBody) {
-    res.render('remove', { title: 'Remove Account'});
+    res.render('userPass', { title: 'Remove Account' });
 }
 
 const remove = function (req, res) {
     const path = '/api/remove';
     const requestOptions = {
         url: apiOptions.server + path,
-        method: 'POST',
+        method: 'DElETE',
         json: {
+            email: req.body.email,
+            password: req.body.password
+        }
+    };
+    request(
+        requestOptions,
+        res.redirect('/')
+    );
+};
+
+/* Update Account */
+
+const loadUpdate = function (req, res) {
+    _renderUpdatePage(req, res);
+}
+
+const update = function (req, res) {
+
+    const path = '/api/update';
+    const requestOptions = {
+        url: apiOptions.server + path,
+        method: 'PUT',
+        json: {
+            updateName: req.body.updateName,
             username: req.body.name,
+            course: req.body.course,
+            email: req.body.email,
             password: req.body.password
         }
     };
@@ -98,6 +113,26 @@ const remove = function (req, res) {
     );
 };
 
+
+const _renderLoginPage = function (req, res, responseBody) {
+    res.render('userPass', { title: 'Login' });
+    req.session.errors = null;
+}
+
+const _renderLoginErr = function (req, res, responseBody) {
+    res.render('login-err', { title: 'Login' });
+    req.session.errors = null;
+}
+
+const _renderRegisterPage = function (req, res, responseBody) {
+    res.render('register', { title: 'Register' });
+}
+
+const _renderUpdatePage = function (req, res, responseBody) {
+    res.render('update', { title: 'Update Account' });
+}
+
+
 module.exports = {
     loadRegister,
     register,
@@ -105,5 +140,7 @@ module.exports = {
     login,
     loadLoginErr,
     loadRemove,
-    remove
+    remove,
+    loadUpdate,
+    update
 };
