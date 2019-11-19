@@ -1,3 +1,6 @@
+
+import { environment } from './../environments/environment';
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -10,7 +13,7 @@ export class TraleeDataService {
 
   constructor(private http: HttpClient) { }
 
-  private apiBaseURL = 'http://localhost:3000/api';
+  private apiBaseURL = environment.apiURL;
 
   public getGrinds(): Promise<Grind[]>{
     const url: string = this.apiBaseURL + '/grinds';
