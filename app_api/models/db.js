@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
+const config = require('../../config.json');
 
-const dbURI = 'mongodb+srv://jackodonoghue:Brqey3s5!@traleetutors-852mk.azure.mongodb.net/TraleeTutors?retryWrites=true&w=majority'
+const dbURI = "mongodb+srv://jackodonoghue:Brqey3s5!@traleetutors-852mk.azure.mongodb.net/TraleeTutors?retryWrites=true&w=majority";
+
+
 mongoose.connect(String(dbURI),{
 useNewUrlParser: true,
 useUnifiedTopology: true,
@@ -9,7 +12,7 @@ keepAlive: true,
 }
 )
 .then(() => console.log('Connected To Mongo!!'))
-.catch(err => console.log(err));
+.catch(err => console.log(err + "\n"));
 
 
 mongoose.connection.on('connected', () => {
