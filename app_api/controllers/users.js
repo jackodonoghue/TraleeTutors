@@ -35,7 +35,7 @@ const login = function (req, res) {
     }
     if (!user) {
       console.log("user: not found");
-      return res.status(404).send();
+      return res.status(500).send();
     }
     else {
       console.log("user: " + user._id + " found");

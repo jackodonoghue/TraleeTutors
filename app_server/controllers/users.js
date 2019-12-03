@@ -109,7 +109,14 @@ const update = function (req, res) {
     };
     request(
         requestOptions,
-        res.redirect('/register')
+        (err, response, body) => {
+            if (response.statusCode === 200) {
+                res.redirect('/grinds');
+            }
+            else {
+                res.redirect('/login/invalid_details');
+            }
+        }
     );
 };
 
@@ -119,7 +126,7 @@ const _renderLoginPage = function (req, res, responseBody) {
 }
 
 const _renderLoginErr = function (req, res, responseBody) {
-    res.render('login-err', { title: 'Login' });
+    res.render('login-err', { title: 'Login', err: responseBody.name });
 }
 
 const _renderRegisterPage = function (req, res, responseBody) {

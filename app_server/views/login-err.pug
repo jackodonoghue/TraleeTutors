@@ -1,4 +1,8 @@
-include userPass
+
+if(err)
+  include userPass
+else
+  include update
 
 block content
   p.incorrect Incorrect login details. Please try again.
