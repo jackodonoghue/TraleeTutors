@@ -116,12 +116,10 @@ const update = function (req, res) {
 
 const _renderLoginPage = function (req, res, responseBody) {
     res.render('userPass', { title: 'Login' });
-    req.session.errors = null;
 }
 
 const _renderLoginErr = function (req, res, responseBody) {
     res.render('login-err', { title: 'Login' });
-    req.session.errors = null;
 }
 
 const _renderRegisterPage = function (req, res, responseBody) {
