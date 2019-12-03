@@ -25,10 +25,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'app-public')));
-app.use(expressSession({secret: 'user', saveUninitialized: false, resave: false}));
+app.use(expressSession({ secret: 'user', saveUninitialized: false, resave: false }));
 
 
-app.use('/api', function(req, res, next) {
+app.use('/api', function (req, res, next) {
   res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
   res.header('Access-Control-Allow-Origin', 'http://https://tralee-tutors.herokuapp.com');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -39,14 +39,14 @@ app.use('/', index);
 app.use('/api', apiRoutes);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   const err = new Error('Not Found');
-  err.status = 404;
+  err.status = 404;s
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
