@@ -3,13 +3,20 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
+const expressSession = require('express-session');
 const bodyParser = require('body-parser');
+const validator = require('express-validator');
 require('./app_api/models/db');
+
+const signedIn = true;
 
 const index = require('./app_server/routes/index');
 const apiRoutes = require('./app_api/routes/index');
 
 const app = express();
+
+//sessions
+app.use(expressSession({secret:'pass', resave: false, saveUninitialized: true}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
@@ -21,6 +28,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(validator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'app-public')));

@@ -108,3 +108,7 @@ footer a.nav-link{
   margin-top: 5%;
   text-align: center;
 }
+
+.showNot{
+  display: none;
+}

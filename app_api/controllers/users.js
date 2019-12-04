@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('Users');
+const signIn = require('../../app_server/controllers/signInDetail.js');
 
 const saveNewUser = function (req, res) {
   const newUser = new User(
@@ -17,6 +18,7 @@ const saveNewUser = function (req, res) {
       console.log("failed" + err + "\n" + res.status + "\n" + newUser.username);
     }
     else {
+      signIn.signIn(req, res, newUser.username);
       console.log('user saved');
     }
   })
@@ -39,6 +41,7 @@ const login = function (req, res) {
     }
     else {
       console.log("user: " + user._id + " found");
+      signIn.signIn(req, res, user.username);
       return res.status(200).send();
     }
   })
@@ -66,7 +69,8 @@ const removeUser = function (req, res) {
           console.log("User Removed");
           return res.status(200).send();
         }
-        else {
+        else {          
+          signIn.signOut(req, res);
           console.log(err);
           return res.status(500).send();
         }
@@ -76,7 +80,7 @@ const removeUser = function (req, res) {
 }
 
 const update = function (req, res) {
-  const nameforUpdate = req.body.updateName;
+  const nameForUpdate = req.body.updateName;
 
   const toBeUpdated = ({
     username: req.body.username,
@@ -85,7 +89,7 @@ const update = function (req, res) {
     password: req.body.password
   });
 
-  User.findOneAndUpdate(nameforUpdate, toBeUpdated, function (err, doc) {
+  User.findOneAndUpdate(nameForUpdate, toBeUpdated, function (err, doc) {
     if (err) return res.send(500, { error: err });
     return res.status(200).send("succesfully saved");
   });

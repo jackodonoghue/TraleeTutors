@@ -1,27 +1,11 @@
-const { check, validationResult } = require('express-validator');
+var nameRegex = /^(?![ .]+$)[a-zA-Z .]*$/gm;
+const passwordRegex = "(?=.*[0-9])";
 
- const userValidationRules = (email, course) => {
-    
-//         if(! || !)
-//           return false;
-        
-         return true
-    
- }
+const validPassword = function (password) { return (!password.match(passwordRegex)) ? false : true };//password must contain number   
 
-const validate = (req, res, next) => {
-  const errors = validationResult([check(req.email).isEmail(), check(req.course).isAlpha()]);
-  if (errors.isEmpty()) {
-    return errors;
-  }
-  const extractedErrors = []
-  errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }))
-
-  return {errors: extractedErrors,}
-
-}
+const validUserName = function (name) { return (!name.match(nameRegex)) ? false : true };// must be alpha with spaces   
 
 module.exports = {
-  userValidationRules,
-  validate,
+  validPassword,
+  validUserName,
 }

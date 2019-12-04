@@ -1,5 +1,6 @@
 const request = require('request');
-const { userValidationRules, validate } = require('./validator.js');
+const {validUserName, validPassword} = require('./validator.js');
+const signIn = require('./signInDetail.js');
 
 const apiOptions = {
     server: 'http://localhost:3000'
@@ -25,14 +26,21 @@ const register = function (req, res) {
             password: req.body.password
         }
     };
-
     
+    req.checkBody('course', 'invalid course').notEmpty().isAlpha();
+    req.checkBody('email', 'invalid email').notEmpty().isEmail();
 
-    const errors = validate([req.body.email, req.body.course]);
+    const errors = req.validationErrors();
+    const messages = [];
 
+    if(errors) {
 
+        errors.forEach(function (error) {
+            messages.push(error.msg);
+        });
+    }
 
-    if (!(_validUserName(requestOptions.json.username)) || !(errors.length == 0)|| (!_validPassword(requestOptions.json.password))) {
+    if (!(validUserName(requestOptions.json.username)) || !(messages.length == 0)|| (!validPassword(requestOptions.json.password))) {
         console.log(errors)
         loadRegisterErr(req, res);
     } else {
@@ -66,8 +74,9 @@ const login = function (req, res) {
     };
     request(
         requestOptions,
-        (err, response, body) => {
+        (err, response) => {
             if (response.statusCode === 200) {
+                console.log(req.session.userName);
                 res.redirect('/grinds');
             }
             else {
@@ -82,7 +91,7 @@ const login = function (req, res) {
 
 /* Remove Account */
 
-const loadRemove = function (req, res, responseBody) {
+const loadRemove = function (req, res) {
     res.render('userPass', { title: 'Remove Account' });
 }
 
@@ -123,13 +132,13 @@ const update = function (req, res) {
         }
     };
 
-    if (!_validPassword(requestOptions.json.password)) {
+    if (!validPassword(requestOptions.json.password)) {
         res.redirect('/login/invalid_details');
     }
     else {
         request(
             requestOptions,
-            (err, response, body) => {
+            (err, response) => {
                 if (response.statusCode === 200) {
                     res.redirect('/grinds');
                 }
@@ -141,32 +150,28 @@ const update = function (req, res) {
     }
 };
 
-const loadRegisterErr = function (req, res, responseBody) {
-    res.render('login-err', { title: 'Register' });
+const loadRegisterErr = function (req, res) {
+    res.render('login-err', { title: 'Register', signedIn: signIn.checkSignIn(req, res) });
 }
 
 
-const _renderLoginPage = function (req, res, responseBody) {
-    res.render('userPass', { title: 'Login' });
+const _renderLoginPage = function (req, res) {
+    req.session.userName = "";
+    res.render('userPass', { title: 'Login', signedIn: signIn.checkSignIn(req, res)});
 }
 
-const _renderLoginErr = function (req, res, responseBody) {
-    res.render('login-err', { title: 'Login' });
+const _renderLoginErr = function (req, res) {
+    res.render('login-err', { title: 'Login', signedIn: signIn.checkSignIn(req, res) });
 }
 
-const _renderRegisterPage = function (req, res, responseBody) {
-    res.render('register', { title: 'Register' });
+const _renderRegisterPage = function (req, res) {
+    res.render('register', { title: 'Register', signedIn: signIn.checkSignIn(req, res) });
 }
 
-const _renderUpdatePage = function (req, res, responseBody) {
-    res.render('update', { title: 'Update Account' });
+const _renderUpdatePage = function (req, res) {
+    res.render('update', { title: 'Update Account', signedIn: signIn.checkSignIn(req, res)});
 }
 
-const _validPassword = function (password) { return (!password.match("(?=.*[0-9])")) ? false : true };//password must contain number   
-
-var regex = /^(?![ .]+$)[a-zA-Z .]*$/gm;
-
-const _validUserName = function (name) { return (!name.match(regex)) ? false : true };// must be alpha with spaces   
 
 module.exports = {
     loadRegister,

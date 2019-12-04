@@ -18,20 +18,25 @@ html
         span.navbar-toggler-icon
       #navbarsExample03.collapse.navbar-collapse
         .mr-auto
+      if (signedIn == "")  
         ul.navbar-nav.mr-0
-          li.nav-item.active
-            a.nav-link(href='/grinds') Grinds
           li.nav-item.active
             a.nav-link(href='/login')
               | Login 
               span.sr-only (current)
           li.nav-item.active
-            a.nav-link(href='/register') Register  
+            a.nav-link(href='/register') Register
+      else
+        ul.navbar-nav.mr-0
+          li.nav-item.active
+            a.nav-link(href='/grinds') Grinds
           li.nav-item.active
             a.nav-link(href='/update-account') Update Account          
           li.nav-item.active
-            a.nav-link(href='/remove-account') Remove Account  
-
+            a.nav-link(href='/remove-account') Remove Account
+          li.nav-item.active
+            a.nav-link(href='/login') Logout  
+        
     block content
     block scripts
       script(src='/javascripts/jquery.slim.min.js')
