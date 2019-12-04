@@ -12,14 +12,21 @@ const saveNewUser = function (req, res) {
       password: req.body.password
     }
   );
-
-  User.create(newUser, function (err, newuser) {
-    if (err) {
-      console.log("failed" + err + "\n" + res.status + "\n" + newUser.username);
+  User.findOne({ email: newUser.email }, function (errs, user) {
+    if (user) {
+      return res.status(500).send("email in use");
     }
-    else {
-      signIn.signIn(req, res, newUser.username);
-      console.log('user saved');
+    else{
+      User.create(newUser, function (err, newuser) {
+        if (err) {
+          console.log("failed" + err + "\n" + res.status + "\n" + newUser.username);
+          return res.status(500).send("cannot register user");
+        }
+        else {
+          signIn.signIn(req, res, newUser.username);
+          return res.status(200).send("user saved");
+        }
+      })
     }
   })
 }
@@ -51,7 +58,7 @@ const removeUser = function (req, res) {
   let emailEntered = req.body.email;
   let passwordEntered = req.body.password;
 
-  User.findOne({ email: emailEntered, password: passwordEntered }, function (err, user) {
+  User.findOne({ email: emailEntered }, function (err, user) {
     console.log(user);
 
     if (err) {
@@ -69,7 +76,7 @@ const removeUser = function (req, res) {
           console.log("User Removed");
           return res.status(200).send();
         }
-        else {          
+        else {
           signIn.signOut(req, res);
           console.log(err);
           return res.status(500).send();

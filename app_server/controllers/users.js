@@ -1,5 +1,5 @@
 const request = require('request');
-const {validUserName, validPassword} = require('./validator.js');
+const { validUserName, validPassword } = require('./validator.js');
 const signIn = require('./signInDetail.js');
 
 const apiOptions = {
@@ -26,27 +26,34 @@ const register = function (req, res) {
             password: req.body.password
         }
     };
-    
+
     req.checkBody('course', 'invalid course').notEmpty().isAlpha();
     req.checkBody('email', 'invalid email').notEmpty().isEmail();
 
     const errors = req.validationErrors();
     const messages = [];
 
-    if(errors) {
+    if (errors) {
 
         errors.forEach(function (error) {
             messages.push(error.msg);
         });
     }
 
-    if (!(validUserName(requestOptions.json.username)) || !(messages.length == 0)|| (!validPassword(requestOptions.json.password))) {
+    if (!(validUserName(requestOptions.json.username)) || !(messages.length == 0) || (!validPassword(requestOptions.json.password))) {
         console.log(errors)
         loadRegisterErr(req, res);
     } else {
         request(
             requestOptions,
-            res.redirect('/grinds')
+            (err, response) => {
+                if (response.statusCode != 200) {
+                    loadRegisterErr(req, res);
+                }
+                else {
+                    res.redirect('/grinds');
+                }
+            }
         );
     }
 };
@@ -157,7 +164,7 @@ const loadRegisterErr = function (req, res) {
 
 const _renderLoginPage = function (req, res) {
     req.session.userName = "";
-    res.render('userPass', { title: 'Login', signedIn: signIn.checkSignIn(req, res)});
+    res.render('userPass', { title: 'Login', signedIn: signIn.checkSignIn(req, res) });
 }
 
 const _renderLoginErr = function (req, res) {
@@ -169,7 +176,7 @@ const _renderRegisterPage = function (req, res) {
 }
 
 const _renderUpdatePage = function (req, res) {
-    res.render('update', { title: 'Update Account', signedIn: signIn.checkSignIn(req, res)});
+    res.render('update', { title: 'Update Account', signedIn: signIn.checkSignIn(req, res) });
 }
 
 
