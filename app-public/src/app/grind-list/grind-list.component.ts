@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TraleeDataService } from '../tralee-data.service';
+import { TitleCasePipe } from '@angular/common';
+
 
 export class Grind {
   _id: string;

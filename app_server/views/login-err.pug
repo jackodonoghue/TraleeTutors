@@ -1,8 +1,10 @@
 
-if(err)
+if(title == "Login")
   include userPass
+else if(title == "Register")
+  include register
 else
   include update
 
 block content
-  p.incorrect Incorrect login details. Please try again.
+p.incorrect Incorrect #{title} details. Please try again.

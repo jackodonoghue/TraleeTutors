@@ -43,4 +43,7 @@ router
 router.get('/login/invalid_details', ctrlUsers.loadLoginErr);
 
 
+router.get('/register/invalid_details', ctrlUsers.loadRegisterErr);
+
+
 module.exports = router;
