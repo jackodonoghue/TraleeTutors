@@ -168,15 +168,15 @@ const _renderLoginPage = function (req, res) {
 }
 
 const _renderLoginErr = function (req, res) {
-    res.render('login-err', { title: 'Login', signedIn: signIn.checkSignIn(req, res) });
+    res.render('login-err', { title: 'Login',  });
 }
 
 const _renderRegisterPage = function (req, res) {
-    res.render('register', { title: 'Register', signedIn: signIn.checkSignIn(req, res) });
+    res.render('register', { title: 'Register',  signedIn: signIn.checkSignIn(req, res)});
 }
 
 const _renderUpdatePage = function (req, res) {
-    res.render('update', { title: 'Update Account', signedIn: signIn.checkSignIn(req, res) });
+    res.render('update', { title: 'Update Account' });
 }
 
 
