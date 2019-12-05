@@ -12,11 +12,6 @@ const saveNewUser = function (req, res) {
       password: req.body.password
     }
   );
-  User.findOne({ email: newUser.email }, function (errs, user) {
-    if (user) {
-      return res.status(500).send("email in use");
-    }
-    else{
       User.create(newUser, function (err, newuser) {
         if (err) {
           console.log("failed" + err + "\n" + res.status + "\n" + newUser.username);
@@ -26,9 +21,7 @@ const saveNewUser = function (req, res) {
           signIn.signIn(req, res, newUser.username);
           return res.status(200).send("user saved");
         }
-      })
-    }
-  })
+      });
 }
 
 const login = function (req, res) {
